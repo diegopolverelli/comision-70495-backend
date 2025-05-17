@@ -1,0 +1,16 @@
+{
+  "name": "04-yarn",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "dev": "node --watch ./src/app.js"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "express-compression": "^1.0.2"
+  }
+}
