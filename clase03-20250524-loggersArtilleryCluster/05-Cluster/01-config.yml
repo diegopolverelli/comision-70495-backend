@@ -1,0 +1,24 @@
+config:
+  # plugins:
+  #   metrics-by-endpoint: {}
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 20
+      arrivalRate: 5
+      name: "Prueba fase 1"
+    - duration: 10
+      arrivalRate: 5
+      rampTo: 20
+      name: "Prueba fase 2 "
+    - duration: 10
+      arrivalRate: 20
+      rampTo: 5
+      name: "Prueba fase 3 "
+scenarios:
+  - name: "Prueba cluster"
+    flow:
+      # - log: "Creamos las variables para el usuario de prueba"
+      - get:
+          url: "/op1"
+      - get:
+          url: "/op2"
