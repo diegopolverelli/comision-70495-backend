@@ -1,0 +1,95 @@
+paths:
+  /api/users/{uid}:
+    get:
+      summary: Obtiene un usuario de la base de datos
+      tags:
+        - Users
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: id del usuario que se está solicitando
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Recupera un usuario de la DB, según el uid que enviamos en la ruta como parámetro
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    # example: Lista de usuarios
+                  usuarios:
+                    type: object
+                    schema:
+                      $ref: '#components/schemas/User'
+        "500":
+          description: Error interno del servidor
+  /api/users/:
+    get:
+      summary: Obtiene todos los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios fueron obtenidos OK desde la DB
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    # example: Lista de usuarios
+                  usuarios:
+                    type: array
+                    items:
+                      $ref: '#components/schemas/User'
+        "201":
+          description: Los usuarios fueron obtenidos OK desde la DB
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    # example: Lista de usuarios
+                  usuarios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        first_name:
+                          type: string
+                          example: "Juan"
+                        last_name:
+                          type: string
+                          example: "Lopez"
+                        email:
+                          type: string
+                          example: "jlopez@test.com"
+        "500":
+          description: Error interno del servidor
+    post:
+      summary: Graba un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/createUser'
+      responses:
+        "201":
+          description: Usuario creado
+        "400":
+          description: Faltan datos
+        "404":
+          description: Page Not Found
+        "500":
+          description: Error interno del servidor
